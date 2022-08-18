@@ -258,22 +258,23 @@ let python_highlight_all = 1
 "set guifont=JetBrainsMono\ NF:h11
 "set guifont=Consolas:h10
 "set guifont=DejaVuSansMono\ NF:h12
-set guifont=DroidSansMono\ NF:h12
+"set guifont=DroidSansMono\ NF:h12
 "set guifont=Roboto\ Mono\ NF:h12
 "set guifont=DejaVuSansMono\ NF:h10
 "set guifont=FiraCode\ NF:h11
 "set guifont=SauceCodePro\ NF:h12
 "set guifont=SauceCodePro\ NF\ Bold:h12
-"set guifont=Hack\ NF:h10
+set guifont=Hack\ NF:h12
 "set guifont=UbuntuMono\ NF:h12
 "set guifont=UbuntuMono\ NF:h12
 "set guifont=Ubuntu\ Mono:h11
 
 
+
 if has('python3')
 endif
 
-"let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeLimitedSyntax = 1
 
 
 call plug#begin('~/vimfiles/plugged/')
@@ -285,10 +286,18 @@ Plug 'scrooloose/nerdcommenter'
 
 " Plug 'jdsimcoe/panic.vim'
 
-"Plug 'preservim/NERDTree'
+Plug 'preservim/NERDTree'
 
+"Plug 'lifepillar/vim-mucomplete'
 Plug 'vim-scripts/AutoComplPop'
-"Plug 'ervandew/supertab'
+
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+"Plug 'ncm2/ncm2-bufword'
+"Plug 'ncm2/ncm2-path'
+"Plug 'roxma/vim-hug-neovim-rpc'
+
+Plug 'ervandew/supertab'
 "Plug 'turbio/bracey.vim'
 "Plug 'mattn/emmet-vim'
 
@@ -297,8 +306,13 @@ Plug 'vim-scripts/AutoComplPop'
 " Plug 'whatyouhide/vim-gotham'
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'luochen1990/rainbow'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'frazrepo/vim-rainbow'
+
+"Plug 'kien/rainbow_parentheses.vim'
+"Plug 'frazrepo/vim-rainbow'
+"Plug 'luochen1990/rainbow'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Plug 'itchyny/lightline.vim'
 " Plug 'mengelbrecht/lightline-bufferline'
@@ -313,7 +327,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 "Plug 'mattn/transparency-windows-vim'
 
-Plug 'tsuyoshicho/transparency.vim'
+
+"Plug 'tsuyoshicho/transparency.vim'
 
 "Plug 'endel/vim-github-colorscheme'
 
@@ -363,6 +378,7 @@ Plug 'sheerun/vim-polyglot'
 " "Plug 'srcery-colors/srcery-vim'
 "Plug 'sainnhe/gruvbox-material'
 "Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 "Plug 'gruvbox-community/gruvbox'
 "Plug 'ajh17/spacegray.vim'
 "Plug 'dracula/vim'
@@ -387,6 +403,8 @@ Plug 'sheerun/vim-polyglot'
 
 "Plug 'geoffharcourt/one-dark.vim'
 
+
+
 "
 "Plug 'joshdick/onedark.vim'
 
@@ -394,8 +412,7 @@ Plug 'sheerun/vim-polyglot'
 
 "Plug 'sainnhe/sonokai'
 
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+"Plug 'neoclide/coc.nvim'
 "Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 
 "Plug 'ryanoasis/powerline-extra-symbols'
@@ -423,7 +440,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 "Plug 'cocopon/iceberg.vim'
 
-Plug 'lifepillar/vim-solarized8'
+"Plug 'lifepillar/vim-solarized8'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -451,7 +468,6 @@ map <F5> <Esc>:UndotreeToggle<CR>
 set undodir=$HOME/.vim/undo-dir
 set undofile 
 
-
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
@@ -464,6 +480,7 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 
+
 " let g:NERDTreeDirArrowExpandable =  ''
 " let g:NERDTreeDirArrowCollapsible = ''
 
@@ -472,7 +489,7 @@ set background=dark
 " let g:webdevicons_enable_nerdtree = 1
 " let g:webdevicons_conceal_nerdtree_brackets = 1
 
-let g:webdevicons_enable_ctrlp = 1
+"let g:webdevicons_enable_ctrlp = 1
 set noshowmode
 
 " Default colorshcemes
@@ -544,26 +561,17 @@ set noshowmode
 "colorscheme atom
 "colorscheme iceberg
 "colorscheme ayu
-" colorscheme panic
 " colorscheme moonshine_minimal
 "colorscheme molokai
-"colorscheme vim-monokai-tasty
-"colorscheme herald
 "colorscheme codedark
-"colorscheme vim-dues
-"colorscheme alduin
-"colorscheme srcery
 "colorscheme gruvbox-material
-"colorscheme moonlight
 "colorscheme iceberg
-colorscheme solarized8_flat
-"colorscheme OceanicNext
-"colorscheme palenight
+"colorscheme solarized8_flat
+colorscheme palenight
 "colorscheme gruvbox
 "colorscheme GreenCode
-"colorscheme deus
 "colorscheme ayu
-
+"colorscheme onedark
 
 
 
@@ -632,4 +640,20 @@ let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = ' ☰ '
 let g:airline_symbols.dirty = ' ⚡'
 
+
+" parentheses Config
+
+let g:rainbow_active = 1
+
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    \ ]
+
+"let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+
+" onedark
+let g:rainbow_guifgs = ['#E06C75', '#61AFEF', '#C678DD', '#56B6C2']
 
