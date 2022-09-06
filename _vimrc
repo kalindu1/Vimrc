@@ -137,7 +137,6 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 
-autocmd filetype cpp nnoremap <F5> :w <bar> !g++ -std=c++17 -O2 -Wall % -o %:r && %:r.exe <CR>" Vim with all enhancements
 source $VIMRUNTIME/vimrc_example.vim
 
 
@@ -203,7 +202,7 @@ set guioptions-=e
 "\ }
 
 set encoding=utf8
-set nu
+set rnu
 set expandtab
 set autoindent
 set tabstop=4 softtabstop=4
@@ -286,7 +285,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " Plug 'jdsimcoe/panic.vim'
 
-Plug 'preservim/NERDTree'
+"Plug 'preservim/NERDTree'
 
 "Plug 'lifepillar/vim-mucomplete'
 Plug 'vim-scripts/AutoComplPop'
@@ -296,8 +295,8 @@ Plug 'vim-scripts/AutoComplPop'
 "Plug 'ncm2/ncm2-bufword'
 "Plug 'ncm2/ncm2-path'
 "Plug 'roxma/vim-hug-neovim-rpc'
-
-Plug 'ervandew/supertab'
+Plug 'pechorin/any-jump.vim'
+"Plug 'ervandew/supertab'
 "Plug 'turbio/bracey.vim'
 "Plug 'mattn/emmet-vim'
 
@@ -312,18 +311,26 @@ Plug 'frazrepo/vim-rainbow'
 "Plug 'kien/rainbow_parentheses.vim'
 "Plug 'frazrepo/vim-rainbow'
 "Plug 'luochen1990/rainbow'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Plug 'itchyny/lightline.vim'
 " Plug 'mengelbrecht/lightline-bufferline'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+
+
+Plug 'majutsushi/tagbar'
+
+"Plug 'prettier/vim-prettier', {
+  "\ 'do': 'yarn install --frozen-lockfile --production',
+  "\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html', 'python'] }
 
 
 "Plug 'mattn/vimtweak'
-
+"Plug 'movsb/gvim_fullscreen'
 "Plug 'derekmcloughlin/gvimfullscreen_win32'
+"Plug 'ruedigerha/vim-fullscreen'
 
 "Plug 'mattn/transparency-windows-vim'
 
@@ -378,7 +385,7 @@ Plug 'sheerun/vim-polyglot'
 " "Plug 'srcery-colors/srcery-vim'
 "Plug 'sainnhe/gruvbox-material'
 "Plug 'joshdick/onedark.vim'
-Plug 'drewtempelmeyer/palenight.vim'
+"Plug 'drewtempelmeyer/palenight.vim'
 "Plug 'gruvbox-community/gruvbox'
 "Plug 'ajh17/spacegray.vim'
 "Plug 'dracula/vim'
@@ -391,7 +398,11 @@ Plug 'drewtempelmeyer/palenight.vim'
 "Plug 'kalindu1/GreenCode.vim'
 "Plug 'kalindu1/term-gruvbox'
 "Plug 'arcticicestudio/nord-vim'
+"Plug 'nanotech/jellybeans.vim'
 
+"Plug 'lifepillar/vim-gruvbox8'
+Plug 'ghifarit53/tokyonight-vim'
+"Plug 'sainnhe/edge'
 
 "Plug 'vim-scripts/Blueshift'
 
@@ -419,6 +430,9 @@ Plug 'drewtempelmeyer/palenight.vim'
 
 "Plug 'vim-scripts/c.vim'
 
+" debugger
+"Plug 'puremourning/vimspector'
+
 
 "Plug 'tomasiser/vim-code-dark'
 
@@ -445,6 +459,98 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
+
+
+" jumping to definition
+
+
+"" Normal mode: Jump to definition under cursor
+nnoremap <leader>j :AnyJump<CR>
+
+" Visual mode: jump to selected text in visual mode
+xnoremap <leader>j :AnyJumpVisual<CR>
+
+" Normal mode: open previous opened file (after jump)
+nnoremap <leader>ab :AnyJumpBack<CR>
+
+" Normal mode: open last closed search window again
+nnoremap <leader>al :AnyJumpLastResults<CR>
+
+
+
+" Show line numbers in search rusults
+let g:any_jump_list_numbers = 0
+
+" Auto search references
+let g:any_jump_references_enabled = 1
+
+" Auto group results by filename
+let g:any_jump_grouping_enabled = 0
+
+" Amount of preview lines for each search result
+let g:any_jump_preview_lines_count = 5
+
+" Max search results, other results can be opened via [a]
+let g:any_jump_max_search_results = 10
+
+" Prefered search engine: rg or ag
+let g:any_jump_search_prefered_engine = 'rg'
+
+
+" Search results list styles:
+" - 'filename_first'
+" - 'filename_last'
+let g:any_jump_results_ui_style = 'filename_first'
+
+" Any-jump window size & position options
+let g:any_jump_window_width_ratio  = 0.6
+let g:any_jump_window_height_ratio = 0.6
+let g:any_jump_window_top_offset   = 4
+
+" Customize any-jump colors with extending default color scheme:
+" let g:any_jump_colors = { "help": "Comment" }
+
+" Or override all default colors
+let g:any_jump_colors = {
+      \"plain_text":         "Comment",
+      \"preview":            "Comment",
+      \"preview_keyword":    "Operator",
+      \"heading_text":       "Function",
+      \"heading_keyword":    "Identifier",
+      \"group_text":         "Comment",
+      \"group_name":         "Function",
+      \"more_button":        "Operator",
+      \"more_explain":       "Comment",
+      \"result_line_number": "Comment",
+      \"result_text":        "Statement",
+      \"result_path":        "String",
+      \"help":               "Comment"
+      \}
+
+" Disable default any-jump keybindings (default: 0)
+let g:any_jump_disable_default_keybindings = 1
+
+" Remove comments line from search results (default: 1)
+let g:any_jump_remove_comments_from_results = 1
+
+" Custom ignore files
+" default is: ['*.tmp', '*.temp']
+let g:any_jump_ignored_files = ['*.tmp', '*.temp']
+
+" Search references only for current file type
+" (default: false, so will find keyword in all filetypes)
+let g:any_jump_references_only_for_current_filetype = 0
+
+" Disable search engine ignore vcs untracked files
+" (default: false, search engine will ignore vcs untracked files)
+let g:any_jump_disable_vcs_ignore = 0
+
+
+" tagbar
+
+nmap <F8> :TagbarToggle<CR>
+
+
 "let g:ctrlp_working_path_mode = 'ra'
 
 "let g:python_highlight_all = 1
@@ -459,8 +565,13 @@ let  g:C_UseTool_doxygen = 'yes'
 
 " let g:vimtweak_dll_path = 'H:\vim\vim82\vimtweak32.dll'
 
-map <F11> <Esc>:call libcallnr("gvimfullscreen_64.dll", "ToggleFullScreen", 0)<CR>
+"map <F11> <Esc>:call libcallnr("gvimfullscreen_64.dll", "ToggleFullScreen", 0)<CR>
 "map <F11> <Esc>:call libcallnr("vimtweak64.dll", "EnableMaximize", 1)<CR>
+noremap <f11> <esc>:call libcallnr('gvim_fullscreen.dll', 'ToggleFullscreen', 0)<cr>
+
+"transparency
+"noremap <f12> <esc>:call libcallnr('gvim_fullscreen.dll', 'ToggleTransparency', "220, 130")<cr>
+"autocmd VimEnter * :call libcallnr('gvim_fullscreen.dll', 'ToggleTransparency', "240, 180")
 
 "let g:python_highlight_all = 1
 
@@ -493,6 +604,8 @@ set background=dark
 set noshowmode
 
 " Default colorshcemes
+
+
 
 "colorscheme blue
 "colorscheme delek
@@ -567,21 +680,33 @@ set noshowmode
 "colorscheme gruvbox-material
 "colorscheme iceberg
 "colorscheme solarized8_flat
-colorscheme palenight
-"colorscheme gruvbox
+"colorscheme palenight
+"colorscheme jellybeans
+"colorscheme gruvbox8_hard
 "colorscheme GreenCode
 "colorscheme ayu
 "colorscheme onedark
+"colorscheme edge
+colorscheme tokyonight
 
 
 
+"let g:airline_theme = 'gruvbox8'
 
+
+"'autoshelldir'	
+"'cdhome'		
+"'cinscopedecls'	
+"'guiligatures'	
+"'mousemoveevent'
+"'quickfixtextfunc'	
+"'spelloptions'		
+"'thesaurusfunc'		
+"'xtermcodes'		
 
 "bracket colorization
 
-"let g:rainbow#max_level = 16
-
-"let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+"let g:rainbow#max_level = 16"let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 "autocmd FileType * RainbowParentheses
 "let g:rainbow#blacklist = [233, 234]
@@ -590,7 +715,10 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 
 
 " airline themes
-let g:airline_theme = 'biogoo'
+"let g:airline_theme = 'biogoo'
+
+
+
 
 set statusline=%F%m%r%h%w%=\ [%Y]\ [%{&ff}]\ [%04l,%04v]\ [%p%%]\ [%L]
 nmap <C-o> :CtrlPMRUFiles<CR>
@@ -646,7 +774,8 @@ let g:airline_symbols.dirty = ' ⚡'
 let g:rainbow_active = 1
 
 let g:rainbow_load_separately = [
-    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    "\ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*' , [['(', ')'], ['{', '}'] ] ],
     \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
     \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
     \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
